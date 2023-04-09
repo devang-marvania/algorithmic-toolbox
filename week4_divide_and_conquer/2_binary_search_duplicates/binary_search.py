@@ -5,9 +5,24 @@ def binary_search_duplicates(keys, query,low,high):
 
     #if the query exists within input array(meaning index is not -1) then see till 
     # how long you can decrement the index and still get it matched with the query
-    if match != -1:
-        while keys[match-1]==query:
-            match=match-1
+  #  if match != -1 and match!=0:
+  #      while keys[match-1]==query:
+  #          match=match-1
+  #          if match==0:
+  #              break
+
+    #If the query exists within array and not at lowest index(meaning index is not -1 or 0) then create a temporary variable "reduced_match"
+    #and see how far this index can be reduced. If at reduced index becomes -1, then use the previous value. To do this, whenever reduced_index is not 0 or 
+    #-1, updated match. If at some point, reduced index becomes 0, then update match right away to save value.
+    
+    if match != -1 and match !=0:
+        reduced_match=match
+        while(reduced_match != -1 and reduced_match != 0):
+            match=reduced_match
+            reduced_match=binary_search(keys, query,low,reduced_match-1)
+            if reduced_match==0:
+                match=reduced_match
+                    
         
             
 
